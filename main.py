@@ -28,33 +28,52 @@ class Animal():
 
     def make_sound(self):
         pass
+
     def eat(self):
         pass
 
+
 class Bird(Animal):
-    def __init__(self, food):
+    def __init__(self, name, age, food):
+        super().__init__(name, age)
         self.food = food
 
     def make_sound(self):
         print("Щебетание")
+
     def eat(self):
         print("Зерно")
 
 
 class Mammal(Animal):
-    def __init__(self, food):
+    def __init__(self, name, age, food):
+        super().__init__(name, age)
         self.food = food
 
     def make_sound(self):
         print("Рык")
+
     def eat(self):
         print("Мясо")
 
+
 class Reptile(Animal):
-    def __init__(self, food):
+    def __init__(self, name, age, food):
+        super().__init__(name, age)
         self.food = food
 
     def make_sound(self):
         print("Шипение")
+
     def eat(self):
         print("Кузнечики")
+
+
+def animal_sound(self, animals):
+    self.animals = animals
+    animals = [Bird("Воробей", 2, "Зерно"), Mammal("Лев", 5, "Мясо"),
+               Reptile("Ящерица", 1, "Кузнечики")]
+    for animal in animals:
+         animal.make_sound()
+
+animal_sound()
