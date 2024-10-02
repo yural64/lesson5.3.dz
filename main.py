@@ -28,6 +28,8 @@ class Animal():
 
     def make_sound(self):
         pass
+    def eat(self):
+        pass
 
 class Bird(Animal):
     def __init__(self, food):
@@ -35,6 +37,8 @@ class Bird(Animal):
 
     def make_sound(self):
         print("Щебетание")
+    def eat(self):
+        print("Зерно")
 
 
 class Mammal(Animal):
@@ -43,6 +47,8 @@ class Mammal(Animal):
 
     def make_sound(self):
         print("Рык")
+    def eat(self):
+        print("Мясо")
 
 class Reptile(Animal):
     def __init__(self, food):
@@ -50,3 +56,5 @@ class Reptile(Animal):
 
     def make_sound(self):
         print("Шипение")
+    def eat(self):
+        print("Кузнечики")
