@@ -80,3 +80,100 @@ animals = [Bird("Воробей", 2, "Зерно"),
            Reptile("Ящерица", 1, "Кузнечики")]
 
 animal_sound(animals)
+
+
+# Вторая часть задания (п.п. 4-5 и дополнительное)
+import pickle
+
+class Zoo:
+    def __init__(self, name):
+        self.name = name
+        self.animals = []
+        self.employees = []
+
+    def add_animal(self, animal):
+        self.animals.append(animal)
+        print(f"Животное {animal.name} добавлено в зоопарк.")
+
+    def add_employee(self, employee):
+        self.employees.append(employee)
+        print(f"Сотрудник {employee.name} добавлен в зоопарк.")
+
+    def show_animals(self):
+        print(f"Животные в зоопарке {self.name}:")
+        for animal in self.animals:
+            print(f"{animal.name}, возраст: {animal.age}, еда: {animal.food}")
+
+    def show_employees(self):
+        print(f"Сотрудники зоопарка {self.name}:")
+        for employee in self.employees:
+            print(f"{employee.name}, профессия: {type(employee).__name__}")
+
+    def save_zoo(self, filename):
+        with open(filename, 'wb') as file:
+            pickle.dump(self, file)
+        print(f"Состояние зоопарка {self.name} сохранено в файл {filename}.")
+
+    @staticmethod
+    def load_zoo(filename):
+        with open(filename, 'rb') as file:
+            zoo = pickle.load(file)
+        print(f"Состояние зоопарка загружено из файла {filename}.")
+        return zoo
+
+
+# Классы сотрудников
+
+class ZooKeeper:
+    def __init__(self, name):
+        self.name = name
+
+    def feed_animal(self, animal):
+        print(f"{self.name} кормит животное {animal.name} едой {animal.food}.")
+
+
+class Veterinarian:
+    def __init__(self, name):
+        self.name = name
+
+    def heal_animal(self, animal):
+        print(f"{self.name} лечит животное {animal.name}.")
+
+
+# Пример использования
+if __name__ == "__main__":
+    # Создаем зоопарк
+    my_zoo = Zoo("Зоопарк Дружбы")
+
+    # Добавляем животных
+    sparrow = Bird("Воробей", 2, "Зерно")
+    lion = Mammal("Лев", 5, "Мясо")
+    lizard = Reptile("Ящерица", 1, "Кузнечики")
+
+    my_zoo.add_animal(sparrow)
+    my_zoo.add_animal(lion)
+    my_zoo.add_animal(lizard)
+
+    # Добавляем сотрудников
+    zookeeper = ZooKeeper("Анна")
+    vet = Veterinarian("Доктор Иван")
+
+    my_zoo.add_employee(zookeeper)
+    my_zoo.add_employee(vet)
+
+    # Показать всех животных и сотрудников
+    my_zoo.show_animals()
+    my_zoo.show_employees()
+
+    # Сотрудники выполняют свои задачи
+    zookeeper.feed_animal(lion)
+    vet.heal_animal(lizard)
+
+    # Сохранение состояния зоопарка
+    my_zoo.save_zoo("zoo_state.pkl")
+
+    # Загрузка состояния зоопарка из файла
+    loaded_zoo = Zoo.load_zoo("zoo_state.pkl")
+    loaded_zoo.show_animals()
+    loaded_zoo.show_employees()
+
