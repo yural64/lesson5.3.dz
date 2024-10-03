@@ -69,11 +69,14 @@ class Reptile(Animal):
         print("Кузнечики")
 
 
-def animal_sound(self, animals):
-    self.animals = animals
-    animals = [Bird("Воробей", 2, "Зерно"), Mammal("Лев", 5, "Мясо"),
-               Reptile("Ящерица", 1, "Кузнечики")]
+def animal_sound(animals):
+
     for animal in animals:
          animal.make_sound()
 
-animal_sound()
+# Создаем список животных и вызываем функцию
+animals = [Bird("Воробей", 2, "Зерно"),
+           Mammal("Лев", 5, "Мясо"),
+           Reptile("Ящерица", 1, "Кузнечики")]
+
+animal_sound(animals)
